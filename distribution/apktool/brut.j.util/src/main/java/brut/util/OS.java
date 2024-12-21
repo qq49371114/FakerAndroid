@@ -18,6 +18,7 @@ package brut.util;
 
 import brut.common.BrutException;
 import java.io.*;
+import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -128,7 +129,7 @@ public class OS {
 
     public static File createTempDirectory() throws BrutException {
         try {
-            File tmp = File.createTempFile("BRUT", null);
+            File tmp = Files.createTempFile("BRUT", null).toFile();
             tmp.deleteOnExit();
             if (!tmp.delete()) {
                 throw new BrutException("Could not delete tmp file: " + tmp.getAbsolutePath());
