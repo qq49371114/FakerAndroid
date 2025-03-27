@@ -17,6 +17,7 @@
 package com.fakerandroid.decoder.util;
 
 import com.fakerandroid.decoder.exception.FileException;
+import java.nio.file.Files;
 import org.apache.commons.io.IOUtils;
 import java.io.*;
 import java.util.HashMap;
@@ -79,7 +80,7 @@ abstract public class Jar {
             }
             long suffix = ThreadLocalRandom.current().nextLong();
             suffix = suffix == Long.MIN_VALUE ? 0 : Math.abs(suffix);
-            File fileOut = File.createTempFile(tmpPrefix, suffix + ".tmp");
+            File fileOut = Files.createTempFile(tmpPrefix, suffix + ".tmp").toFile();
             fileOut.deleteOnExit();
 
             OutputStream out = new FileOutputStream(fileOut);

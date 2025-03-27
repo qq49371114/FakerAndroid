@@ -33,6 +33,7 @@ import brut.androlib.res.xml.ResValuesXmlSerializable;
 import brut.androlib.res.xml.ResXmlPatcher;
 import brut.common.BrutException;
 import brut.util.*;
+import java.nio.file.Files;
 import org.apache.commons.io.IOUtils;
 import org.xmlpull.v1.XmlSerializer;
 
@@ -324,7 +325,7 @@ final public class AndrolibResources {
 
         File doNotCompressFile;
         try {
-            doNotCompressFile = File.createTempFile("APKTOOL", null);
+            doNotCompressFile = Files.createTempFile("APKTOOL", null).toFile();
             doNotCompressFile.deleteOnExit();
 
             BufferedWriter fileWriter = new BufferedWriter(new FileWriter(doNotCompressFile));
