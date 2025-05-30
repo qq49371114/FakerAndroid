@@ -17,6 +17,7 @@
 package brut.util;
 
 import brut.common.BrutException;
+import io.github.pixee.security.BoundedLineReader;
 import java.io.*;
 import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
@@ -154,7 +155,7 @@ public class OS {
             try {
                 BufferedReader br = new BufferedReader(new InputStreamReader(mIn));
                 String line;
-                while ((line = br.readLine()) != null) {
+                while ((line = BoundedLineReader.readLine(br, 5_000_000)) != null) {
                     if (mType.equals("OUTPUT")) {
                         LOGGER.info(line);
                     } else {
@@ -183,7 +184,7 @@ public class OS {
         public void run() {
             String line;
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
-                while ((line = reader.readLine()) != null) {
+                while ((line = BoundedLineReader.readLine(reader, 5_000_000)) != null) {
                     buffer.append(line).append('\n');
                 }
             } catch (IOException ignored) {}
