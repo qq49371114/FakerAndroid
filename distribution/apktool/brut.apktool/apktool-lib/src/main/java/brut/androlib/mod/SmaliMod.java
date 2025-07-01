@@ -18,6 +18,7 @@ package brut.androlib.mod;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 
 import org.antlr.runtime.*;
 import org.antlr.runtime.tree.CommonTree;
@@ -42,7 +43,7 @@ public class SmaliMod {
                                             boolean printTokens, File smaliFile) throws IOException, RecognitionException {
 
         // copy our filestream into a tmp file, so we don't overwrite
-        File tmp = File.createTempFile("BRUT",".bak");
+        File tmp = Files.createTempFile("BRUT", ".bak").toFile();
         tmp.deleteOnExit();
 
         OutputStream os = new FileOutputStream(tmp);

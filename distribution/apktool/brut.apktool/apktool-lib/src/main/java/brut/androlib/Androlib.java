@@ -31,6 +31,7 @@ import brut.directory.*;
 import brut.util.BrutIO;
 import brut.util.OS;
 import java.io.*;
+import java.nio.file.Files;
 import java.util.*;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
@@ -475,7 +476,7 @@ public class Androlib {
                     }
                 }
 
-                File apkFile = File.createTempFile("APKTOOL", null);
+                File apkFile = Files.createTempFile("APKTOOL", null).toFile();
                 apkFile.delete();
                 resourceFile.delete();
 
@@ -537,7 +538,7 @@ public class Androlib {
                     newFiles(APK_MANIFEST_FILENAMES, apkDir))) {
                 LOGGER.info("Building AndroidManifest.xml...");
 
-                File apkFile = File.createTempFile("APKTOOL", null);
+                File apkFile = Files.createTempFile("APKTOOL", null).toFile();
                 apkFile.delete();
 
                 File ninePatch = new File(appDir, "9patch");

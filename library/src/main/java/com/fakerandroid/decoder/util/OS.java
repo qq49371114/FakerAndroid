@@ -17,6 +17,7 @@
 package com.fakerandroid.decoder.util;
 
 import com.fakerandroid.decoder.exception.FakerAndroidException;
+import java.nio.file.Files;
 import org.apache.commons.io.IOUtils;
 
 import java.io.*;
@@ -125,7 +126,7 @@ public class OS {
 
     public static File createTempDirectory() throws FakerAndroidException {
         try {
-            File tmp = File.createTempFile("BRUT", null);
+            File tmp = Files.createTempFile("BRUT", null).toFile();
             tmp.deleteOnExit();
             if (!tmp.delete()) {
                 throw new FakerAndroidException("Could not delete tmp file: " + tmp.getAbsolutePath());
